@@ -39,9 +39,9 @@ namespace Ex04.Menus.Test
 
             int count = 0;
 
-            for(int i = 0; i < userSentence.Length; i++)
+            foreach(char c in userSentence)
             {
-                if(char.IsUpper(userSentence[i]))
+                if(char.IsUpper(c))
                 {
                     count++;
                 }
@@ -84,21 +84,19 @@ namespace Ex04.Menus.Test
         public int GetValidUserRequest(int i_MinNumber,int i_MaxNumber)
         {
             bool validInput;
-            string message = string.Format("{0}Please select option ({1}-{2}):", Environment.NewLine, i_MinNumber, i_MaxNumber);
+            string message = string.Format("{0}Enter your request: ({1} to {2} or press '0' to Exit).", Environment.NewLine, i_MinNumber + 1, i_MaxNumber);
             Console.WriteLine(message);
             validInput = int.TryParse(Console.ReadLine(), out int UserChoose);
 
             while (!validInput || UserChoose > i_MaxNumber || UserChoose < i_MinNumber)
             {
-                message = string.Format("Invalid input, please try again:({0}-{1})", i_MinNumber, i_MaxNumber);
+                message = string.Format("Invalid input, please try again:(numbers from {0} to {1})", i_MinNumber + 1, i_MaxNumber);
                 Console.WriteLine(message);
                 validInput = int.TryParse(Console.ReadLine(), out UserChoose);
             }
 
             return UserChoose;
         }
-
-        
     }
 
     
